@@ -16,7 +16,7 @@ export class StoreService {
   getKey(key:string){
     return localStorage.getItem(key)
   }
-  setKey(key:string,value:string){
+  setKey(key:string,value:any){
     localStorage.setItem(key,value)
   }
 }

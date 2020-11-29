@@ -1,0 +1,55 @@
+.container{
+    position: fixed;
+    top:0px;
+    left: 0px;
+    width: 140px;
+    overflow: hidden;
+    height: 40px;
+    z-index: 100;
+}
+.container>span{
+    width: 70px;
+    height: 20px;
+    line-height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.background {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1000;  
+    background-repeat: no-repeat !important;
+    position: fixed;
+    background-size:cover !important;
+}
+
+.container:hover{
+    width: 100%;
+    background-color: #000;
+    animation: showDown 0.5s;
+    color: #fff;
+    animation-fill-mode:forwards
+}
+@keyframes showDown{
+    0%{
+        height: 40px;
+    }
+    30%{
+        height: 120px;
+    }
+    60%{
+        height: 240px;
+    }
+    90%{
+        height: 360px;
+    }
+    100%{
+        height: 400px;
+    }
+}

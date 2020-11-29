@@ -1,1 +1,11 @@
-<p>theme works!</p>
+<div class="body">
+    <div class="but" (click)="toPrevious()">
+        <img src="../../../assets/toleft.svg">
+    </div>
+    <div class="container">
+        <div *ngFor="let item of store.themeList" ><img [src]="item.src"></div>
+    </div>
+    <div class="but" (click)="toNext()">
+        <img src="../../../assets/toright.svg">
+    </div>
+</div>

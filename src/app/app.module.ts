@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule } from "@angular/forms";
-import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule} from "@angular/common/http"
+import {HttpClientJsonpModule} from "@angular/common/http"
+
 import { AppComponent } from './app.component';
 import { SearchBoxComponent } from './componnets/search-box/search-box.component';
 import { SettingComponent } from './componnets/setting/setting.component';
@@ -9,6 +11,7 @@ import { ThemeComponent } from './componnets/theme/theme.component';
 import { FootComponent } from './componnets/foot/foot.component';
 
 import {StoreService} from "./service/store.service";
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import {StoreService} from "./service/store.service";
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
   providers: [StoreService],
   bootstrap: [AppComponent]

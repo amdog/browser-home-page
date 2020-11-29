@@ -5,8 +5,10 @@
     display: flex;
     position: fixed;
     bottom: 50%;
-    margin-bottom: -23px;
+    flex-wrap: wrap;
     left: 0;
+    flex-basis:612px;
+    
     justify-content: center;
     align-items: center;
 }
@@ -14,6 +16,7 @@
 .search-box>input{
     width: 500px;
     height: 42px;
+    background: none;
     border-radius: 7px;
     border: solid 1px #000;
     outline: rgb(255, 99, 71);
@@ -39,4 +42,26 @@ overflow: hidden;
     justify-content: center;
     width: 32px;
     background-color: #000;
+}
+.tips{
+    position: fixed;
+    bottom: 50%;
+    margin-bottom: 86px;
+    left: 50%;
+    margin-left: -300px;
+    width: 600px;
+    margin-bottom: -200px;
+    height: 150px;
+}
+.tips>span{
+    display: inline-block;
+    width: auto;
+    background-color:#fff;
+    color: #666;
+    border-radius: 0.5em;
+    cursor: pointer;
+    margin: 20px;
+}
+.tips>span:nth-child(2n){
+    margin: 5px;
 }

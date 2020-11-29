@@ -1,1 +1,9 @@
-<p>setting works!</p>
+<div class="container">
+    默认背景:<input type="text" [(ngModel)]="settingItems[0]" placeholder="输入链接地址"/>
+    无痕浏览:<select [(ngModel)]="settingItems[1]">
+        <option>on</option>
+        <option>off</option>
+    </select>
+    <input type="button" value="恢复" (click)="resetSetting()">
+    <input type="button" value="保存" (click)="saveSetting()">
+</div>

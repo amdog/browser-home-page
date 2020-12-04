@@ -19,16 +19,16 @@ export class SettingComponent implements OnInit {
   }
   saveSetting(){
     this.store.setKey("defaultBack",this.settingItems[0])
-    this.store.setKey("saveCookie",this.settingItems[1])
-    if(this.settingItems[1] == "off"){
+    if(this.settingItems[1] !== this.store.getKey("saveCookie")){
       this.store.setKey("cookieList","[]")
       this.store.tipsList=[]
+      this.store.setKey("saveCookie",this.settingItems[1])
     }
     alert("success")
     window.location.reload()
   }
   resetSetting(){
-    this.settingItems=["","off"]
+    this.settingItems=["https://imdog.gitee.io/indeximg/b.jpg","off"]
   }
   ngOnInit(): void {
   }

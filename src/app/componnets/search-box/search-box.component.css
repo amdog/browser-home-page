@@ -48,9 +48,13 @@ overflow: hidden;
     bottom: 50%;
     margin-bottom: 86px;
     left: 50%;
-    margin-left: -300px;
-    width: 600px;
+    margin-left: -20%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     margin-bottom: -200px;
+    flex-wrap: wrap;
     height: 150px;
 }
 .tips>span{
@@ -58,10 +62,10 @@ overflow: hidden;
     width: auto;
     background-color:#fff;
     color: #666;
-    border-radius: 0.5em;
+    border-radius: 0.3em;
     cursor: pointer;
-    margin: 20px;
+    margin: 10px;
 }
 .tips>span:nth-child(2n){
-    margin: 5px;
+    margin: 0px;
 }

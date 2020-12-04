@@ -23,6 +23,10 @@ export class SearchBoxComponent implements OnInit {
     this.showCookie()
     this.keywords=""
    }
+   setCookieList():any[]{
+     this.store.setKey("cookieList","[]")
+     return []
+   }
   swithEngine(){
     this.index=parseInt(this.store.getKey("defaultEngine"))
     this.index++
@@ -36,6 +40,9 @@ export class SearchBoxComponent implements OnInit {
   searchAction(e?:any){
     if(((e && e.key == "Enter") || e==1) && (this.keywords.trim().length>0)){
       let arry:string[]=JSON.parse(this.store.getKey("cookieList"))
+      if(arry.length > 10){
+        arry.pop()
+      }
       arry.unshift(this.keywords)
       this.store.setKey("cookieList",JSON.stringify(arry))
       this.startSearch(this.keywords)
@@ -52,20 +59,26 @@ export class SearchBoxComponent implements OnInit {
   }
   showCookie(){
     if(!!this.store.getKey("saveCookie") && this.store.getKey("saveCookie")=="on"){
-      this.store.tipsList=JSON.parse(this.store.getKey("cookieList"))
+      this.store.tipsList=!!this.store.getKey("cookieList")? JSON.parse(this.store.getKey("cookieList")):this.setCookieList()
     }
     else{
        this.store.tipsList=[]
     }
   }
+  tipToKey(keywords){
+    this.keywords=keywords
+    this.searchAction(1)
+  }
   startSearch(keywords:string){
-    window.location.href=this.store.enginesList[this.store.getKey("defaultEngine")].host+keywords
+    window.open(this.store.enginesList[this.store.getKey("defaultEngine")].host+keywords)
   }
   ngOnInit(): void {
   }
   ngAfterViewInit(){
+    if(window.screen.width<window.screen.height){
+      this.inputKeyWords.nativeElement.style.width="60%"
+    }
     this.inputKeyWords.nativeElement.focus()
     this.inputKeyWords.nativeElement.value=""
-    console.log(this.keywords)
   }
 }

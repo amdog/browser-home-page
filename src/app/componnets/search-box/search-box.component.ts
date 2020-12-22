@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import {StoreService} from "../../service/store.service"
 import {ViewChild,ElementRef} from "@angular/core"
-
+import {HttpClient} from "@angular/common/http"
 
 @Component({
   selector: 'app-search-box',
@@ -15,18 +15,52 @@ export class SearchBoxComponent implements OnInit {
   @ViewChild("inputKeyWords")  inputKeyWords:ElementRef;
   public src:string
   public index:number
+  public newlink:string=''
+  public http:HttpClient
+  public key:string=''
+  public linkList:any[]=['http://chatjs.top']
+  public name:string='登录同步标签?'
+  public showLogin:boolean=false
   public keywords:string
-  constructor(store:StoreService) {
+  public showTab:boolean=false
+  constructor(http:HttpClient,store:StoreService) {
     this.store=store
+    this.http=http;
+    this.http.get('/link/index.php').subscribe((d:any)=>{
+      if(d.name){
+        this.name=":hello! " + d.name
+        this.linkList=d.linkList
+      }
+    })
     this.src=!!this.store.getKey("defaultEngine")? this.store.enginesList[this.store.getKey("defaultEngine")].src: this.setDefaultEngine()
     ;!!this.store.getKey("saveCookie")? null: this.store.setKey("saveCookie","on")
-    this.showCookie()
+    this.showCookie()    
     this.keywords=""
    }
+    offTab(){
+     this.showTab=false
+   }
+   onTab(){
+     this.showTab=true
+   } 
    setCookieList():any[]{
      this.store.setKey("cookieList","[]")
      return []
    }
+   inputLink(){
+    this.newlink=(window.prompt("链接地址:") as any)
+    this.http.post('/link/index.php',{
+      link:this.newlink
+    }).subscribe((d)=>{
+      window.location.reload()
+    })
+  }
+   toShowLogin(){
+    this.showLogin=true
+  }
+  offLogin(){
+    this.showLogin=false
+  }  
   swithEngine(){
     this.index=parseInt(this.store.getKey("defaultEngine"))
     this.index++
@@ -49,8 +83,10 @@ export class SearchBoxComponent implements OnInit {
       this.keywords=""
     }
     if(this.keywords.trim().length>0){
+      
       this.store.getTips(this.keywords,(d:string[])=>{
       this.store.tipsList=d
+
     })
     }
     else{
@@ -78,7 +114,9 @@ export class SearchBoxComponent implements OnInit {
     if(window.screen.width<window.screen.height){
       this.inputKeyWords.nativeElement.style.width="60%"
     }
-    this.inputKeyWords.nativeElement.focus()
+    setTimeout(()=>{
+      this.inputKeyWords.nativeElement.focus()
+    },1000)
     this.inputKeyWords.nativeElement.value=""
   }
 }

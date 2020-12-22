@@ -19,6 +19,11 @@ export class AppComponent {
   public Url:string
   public store:StoreService
   public themeList:any[]
+  public newlink:string=''
+  public key:string=''
+  public linkList:any[]=['http://chatjs.top']
+  public name:string='登录同步标签?'
+  public showLogin:boolean=false
   constructor(store:StoreService){
     this.store=store
     this.Url=!!this.store.getKey("defaultBack")? this.store.getKey("defaultBack"):this.setDefaultBack()
@@ -44,4 +49,10 @@ export class AppComponent {
   ngAfterViewChecked(){
     this.eleBack.nativeElement.style.background=`url('${this.store.getKey('defaultBack')}')`
   }
+  toShowLogin(){
+    this.showLogin=true
+  }
+  offLogin(){
+    this.showLogin=false
+  }  
 }

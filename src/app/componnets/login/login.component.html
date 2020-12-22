@@ -1,0 +1,29 @@
+<div class="marsk" *ngIf="show">
+    <div class="contaniner">
+        <br>
+        <br>
+        <h1>willom</h1>
+        <br>
+        <br>
+        <br>
+        <label for="in1">用户名</label>
+        <input [(ngModel)]="name" type="text" id="in1">
+        <br>
+        <br>
+        <br>
+        <label for="in1">密&nbsp;码</label>
+        <input type="password" [(ngModel)]="passwd" id="in2">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="tips">
+            没有账号? <a href="">注册</a> | <a href="">忘记密码</a> 
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <input type="button" (click)="login()" value="login"><span class="back" (click)="offLogin()">返回</span>
+    </div>
+</div>

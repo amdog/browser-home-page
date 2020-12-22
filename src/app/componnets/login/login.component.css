@@ -1,0 +1,61 @@
+.marsk{
+    background-color:#fff;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    color: #000;
+    z-index: 70099098908;
+    left: 0;
+}
+.marsk>.contaniner{
+    padding: 10px;
+    position:  absolute;
+    margin: 0 auto;
+    top:50%;
+    margin-top: -30vh;
+    left: 50%;
+    margin-left: -30vw;
+    width: 60vw;
+    height: 60vh;
+    background-color: #fff;
+    opacity: 1;
+    border-radius: 14px;
+}
+.contaniner>  input{
+    background-color: #fff;
+    width: 40vw;
+    height: 30px;
+    outline: none;
+    font-size: 30px;
+    border: 0;
+    border-bottom: #afafaf solid 1px;
+}
+.contaniner>  input:nth-of-type(3){
+    font-size: 20px;
+    color: #fff;
+    background-color: #33cccc;
+    border-radius: 5px;
+    height: 40px;
+    box-shadow: 0px 0px 5px #33cccc;
+    border: 0 !important;
+    width: 30vw !important;
+    margin-right: 20px;
+}
+.contaniner> input:focus{
+    border-bottom: #222 solid 1px;
+}
+.contaniner> .back{
+    color: #999;
+    font-size: 14px;
+}
+label{
+    display: inline-block;
+    text-align: center;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+}
+.contaniner>.tips{
+    font-size: 12px;
+}

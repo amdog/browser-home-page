@@ -14,4 +14,5 @@
     <app-theme *ngIf="flag === 2"></app-theme>
 </div>
 <app-search-box></app-search-box>
+<app-login [show]="showLogin" (outer)="offLogin()"></app-login>
 <app-foot></app-foot>

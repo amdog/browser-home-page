@@ -12,6 +12,7 @@ import { FootComponent } from './componnets/foot/foot.component';
 
 import {StoreService} from "./service/store.service";
 import { from } from 'rxjs';
+import { LoginComponent } from './componnets/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { from } from 'rxjs';
     SearchBoxComponent,
     SettingComponent,
     ThemeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

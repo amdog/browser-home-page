@@ -4,11 +4,21 @@ import {StoreService} from "../../service/store.service"
 import {ViewChild,ElementRef} from "@angular/core"
 import {HttpClient} from "@angular/common/http"
 
+(Array.prototype as any).remove = function(val:any) { 
+  var index = this.indexOf(val); 
+  if (index > -1) { 
+  this.splice(index, 1)
+  this.push()
+  } 
+  };
+
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.css']
 })
+
+
 
 export class SearchBoxComponent implements OnInit {
   public store:StoreService
@@ -26,22 +36,27 @@ export class SearchBoxComponent implements OnInit {
   constructor(http:HttpClient,store:StoreService) {
     this.store=store
     this.http=http;
-    this.http.get('/link/index.php').subscribe((d:any)=>{
-      if(d.name){
-        this.name=":hello! " + d.name
-        this.linkList=d.linkList
-      }
-    })
+    this.getUserInfo()
     this.src=!!this.store.getKey("defaultEngine")? this.store.enginesList[this.store.getKey("defaultEngine")].src: this.setDefaultEngine()
     ;!!this.store.getKey("saveCookie")? null: this.store.setKey("saveCookie","on")
     this.showCookie()    
     this.keywords=""
    }
+   getUserInfo(){
+    this.http.get('/blog/link/check.php').subscribe((d:any)=>{
+      if(d.name){
+        this.name=":hello! " + d.name
+        this.linkList=d.linkList
+      }
+    })
+   }
     offTab(){
      this.showTab=false
    }
    onTab(){
-     this.showTab=true
+     setTimeout(()=>{
+      this.showTab=true
+     },100)
    } 
    setCookieList():any[]{
      this.store.setKey("cookieList","[]")
@@ -49,10 +64,12 @@ export class SearchBoxComponent implements OnInit {
    }
    inputLink(){
     this.newlink=(window.prompt("链接地址:") as any)
-    this.http.post('/link/index.php',{
+    this.http.post('/blog/link/index.php',{
       link:this.newlink
-    }).subscribe((d)=>{
-      window.location.reload()
+    }).subscribe((d:any)=>{
+      if(d.status == 1){
+        this.linkList.push(this.newlink);
+      }
     })
   }
    toShowLogin(){
@@ -60,6 +77,7 @@ export class SearchBoxComponent implements OnInit {
   }
   offLogin(){
     this.showLogin=false
+    this.getUserInfo()
   }  
   swithEngine(){
     this.index=parseInt(this.store.getKey("defaultEngine"))
@@ -83,10 +101,8 @@ export class SearchBoxComponent implements OnInit {
       this.keywords=""
     }
     if(this.keywords.trim().length>0){
-      
       this.store.getTips(this.keywords,(d:string[])=>{
       this.store.tipsList=d
-
     })
     }
     else{
@@ -105,8 +121,21 @@ export class SearchBoxComponent implements OnInit {
     this.keywords=keywords
     this.searchAction(1)
   }
+  deletethis(e:any,w:string){
+    e.preventDefault();
+    this.http.post('/blog/link/index.php',{
+      delete:w
+    }).subscribe((d:any)=>{
+      if(d.status == 1){
+        (this.linkList as any).remove(w)
+      }
+    })
+  }
   startSearch(keywords:string){
     window.open(this.store.enginesList[this.store.getKey("defaultEngine")].host+keywords)
+  }
+  searchBytag(s:string){
+    window.location.href=s;
   }
   ngOnInit(): void {
   }

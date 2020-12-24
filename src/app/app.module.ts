@@ -13,6 +13,7 @@ import { FootComponent } from './componnets/foot/foot.component';
 import {StoreService} from "./service/store.service";
 import { from } from 'rxjs';
 import { LoginComponent } from './componnets/login/login.component';
+import { SignupComponent } from './componnets/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from './componnets/login/login.component';
     SettingComponent,
     ThemeComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

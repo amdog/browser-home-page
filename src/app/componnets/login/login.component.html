@@ -18,12 +18,12 @@
         <br>
         <br>
         <div class="tips">
-            没有账号? <a href="">注册</a> | <a href="">忘记密码</a> 
+            没有账号? <span (click)="toShowSignup()">注册</span> | <a href="">忘记密码</a> 
         </div>
         <br>
         <br>
         <br>
         <br>
-        <input type="button" (click)="login()" value="login"><span class="back" (click)="offLogin()">返回</span>
-    </div>
+        <input type="button" (click)="login()" value="login"><span class="back" (click)="offLogin()">返回</span></div>
+        <app-signup *ngIf="showSignup"></app-signup>
 </div>

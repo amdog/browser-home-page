@@ -1,0 +1,57 @@
+.back:hover{
+    text-decoration: underline;
+}
+.back:link{
+    text-decoration: none;
+    color: #999;
+}
+.marsk0{
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+color: #000;
+z-index: 80000000000;
+left: 0;
+padding-left: 30vw;
+padding-top:20vh;
+background-color:#fff;
+}
+.contaniner0>  input{
+background-color: #fff;
+width: 40vw;
+height: 30px;
+outline: none;
+font-size: 30px;
+border: 0;
+border-bottom: #afafaf solid 1px;
+}
+.contaniner0>  input:last-of-type{
+font-size: 20px;
+color: #fff;
+background-color: #33cccc;
+border-radius: 5px;
+height: 40px;
+box-shadow: 0px 0px 5px #33cccc;
+border: 0 !important;
+width: 30vw !important;
+margin-right: 20px;
+margin-left: 50px;
+}
+.contaniner0> input:focus{
+border-bottom: #222 solid 1px;
+}
+.contaniner0> .back{
+color: #999;
+font-size: 14px;
+}
+label{
+display: inline-block;
+text-align: center;
+width: 100px;
+height: 40px;
+line-height: 40px;
+}
+.contaniner0>.tips{
+font-size: 12px;
+}

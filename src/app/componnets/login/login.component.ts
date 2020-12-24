@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public name:string='';
   @Output() public outer:EventEmitter<string>=new EventEmitter()
   @Input() public show:boolean
+  public showSignup:boolean=false;
   public passwd:string=''
     constructor(http:HttpClient) { 
       this.http=http
@@ -23,18 +24,19 @@ export class LoginComponent implements OnInit {
   
   }
   login(){
-    this.http.post("/link/index.php",{
+    this.http.post("/blog/link/sign.php",{
       name:this.name,
       passwd:this.passwd
     }).subscribe((d:any)=>{
-      if(d.message=='success'){
-        window.location.reload()
+      if(d.status==1){
+        this.outer.emit('offLogin')
       }
     })
   }
   offLogin(){
-    this.outer.emit('0')
+    this.outer.emit('offLogin')
   }
-
-
+  toShowSignup(){
+    this.showSignup=true
+  }
 }

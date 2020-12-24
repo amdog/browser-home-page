@@ -52,7 +52,7 @@ export class AppComponent {
   toShowLogin(){
     this.showLogin=true
   }
-  offLogin(){
+  offLogin(e){
     this.showLogin=false
   }  
 }

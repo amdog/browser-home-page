@@ -13,11 +13,13 @@ top: 0;
 color: #000;
 z-index: 80000000000;
 left: 0;
-padding-left: 30vw;
-padding-top:20vh;
 background-color:#fff;
 }
-.contaniner0>  input{
+.contaniner0{
+    margin: 0 auto;
+    width: 60vw;
+}
+.contaniner0>input{
 background-color: #fff;
 width: 40vw;
 height: 30px;
